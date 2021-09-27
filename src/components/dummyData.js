@@ -32,7 +32,7 @@ export const dummyRealtime = [
     nick: "익명",
     date: "09/05 00:39",
     title: "React 스터디 잘하는방법",
-    contents: "hellow word",
+    contents: "hello world",
     category: "자유게시판",
     comments: 35,
     like: 20,
