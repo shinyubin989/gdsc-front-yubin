@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 import likeIcon from "../../../assets/icon/like.png";
 import commentIcon from "../../../assets/icon/comment.png";
-import { COLORS } from "../../../components/Colors";
 
 
 const ContentWrapper = styled.div`

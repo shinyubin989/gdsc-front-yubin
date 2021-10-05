@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { COLORS } from "../../components/Colors";
 import BottomNavigation from "../../layout/BottomNavigation";
 
 import Alarm from "./components/Alarm";
