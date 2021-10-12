@@ -24,7 +24,7 @@ const RealTimeBoard = ({contents}) => {
         <BoardWrapper className="board-wrapper">
             <h1 className="menu-title">실시간 인기 글</h1>
             <div>
-                { contents.map((content, index) => (
+                { contents && contents.map((content, index) => (
                         <RealTimeItem content={content}/>
                   )
                 )}

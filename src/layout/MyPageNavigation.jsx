@@ -12,6 +12,7 @@ const NavigationWrapper = styled.div`
   img {
     width: 20px;
     height: 20px;
+    transform: rotate(180deg);
   }
   .upper-text {
       font-size: 15x;
@@ -20,13 +21,13 @@ const NavigationWrapper = styled.div`
   }
 `;
 
-const MyPageNavigation = () => {
+const MyPageNavigation = ( {pageName} ) => {
   return (
     <NavigationWrapper>
         <Link to="/">
             <img src={arrow} alt="back" />
         </Link>
-        <div className="upper-text">내 정보</div>
+        <div className="upper-text">{pageName}</div>
     </NavigationWrapper>
   );
 };

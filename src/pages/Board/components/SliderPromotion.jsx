@@ -3,16 +3,12 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { COLORS } from "../../../components/Colors";
 
-import MyboardItem from "./MyboardItem";
-
-const BoardWrapper = styled.div`
-  display: block;
-  margin-top: 20px;
-
-  .toptop {
-      margin: 12px 16px;
+const PromotionWrapper = styled.div`
+.board-wrapper {
+    margin: 12px 16px;
       display: flex;
       justify-content: space-between;
+      padding: 12px 12px 12px 12px;
 
       .title {
         display: flex;
@@ -31,30 +27,22 @@ const BoardWrapper = styled.div`
   }
 `;
 
-
-const Myboard = ({contents}) => {
+const SliderPromotion = () => {
   return (
-    <BoardWrapper className="board-wrapper">
-      <div className="toptop">
-        <h1 className="title">즐겨찾는 게시판</h1>
-          <div className="look-more">
+    <PromotionWrapper>
+      <div className="board-wrapper">
+        <div className="title">인기 게시물</div>
+      </div>
+      <div className="board-wrapper">
+        <div className="title">공기업 게시판</div>
+        <div className="look-more">
             <Link to="/board">
               <h3>더 보기 &gt;</h3>
             </Link>
           </div>
-        </div>
-        <div>
-          { contents && contents.map((content, index) => (
-            <MyboardItem content={content}/>
-            )
-          )}
-        </div>
-        <div>
-
-        </div>
-        
-    </BoardWrapper>
+      </div>
+    </PromotionWrapper>
   );
 };
 
-export default Myboard;
+export default SliderPromotion;

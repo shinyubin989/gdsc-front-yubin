@@ -44,7 +44,7 @@ const Popular = ({contents}) => {
                 </div>
             </div>
             <div>
-                { contents.map((content, index) => (
+                { contents && contents.map((content, index) => (
                         <PopularItem content={content}/>
                   )
                 )}

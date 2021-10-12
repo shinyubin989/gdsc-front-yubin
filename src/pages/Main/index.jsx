@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { COLORS } from "../../components/Colors";
 import mypageLogo from "../../assets/nav/mypage.svg";
@@ -13,6 +13,7 @@ import notice from "../../assets/icon/notice.svg";
 
 import BottomNavigation from "../../layout/BottomNavigation";
 
+
 import Myboard from "./components/Myboard";
 import RealTimeBoard from "./components/RealTimeBoard";
 import Popular from "./components/Popular";
@@ -23,8 +24,8 @@ import { dummyMyboard, dummyRealtime, dummyHot } from "../../components/dummyDat
 
 const MainWrapper = styled.div`
   width: 100%;
-  height: calc(100% - 70px);
   padding-top: 70px;
+  padding-bottom: 48px;
   .main-top-navigation {
     position: fixed; //position: fixed, absolute, relative 에 대해 알아보세요!
     width: 100%;
@@ -130,9 +131,48 @@ const MainWrapper = styled.div`
 
 
   }
+  .setting-button {
+    margin: 10px 16px 10px;
+    width: calc(100% - 32px);
+    height: 48px;
+    border-radius: 10px;
+    background-color: ${COLORS.grey_400};
+    span {
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+      line-height: 1.1;
+      font-weight: 700;
+      color: ${COLORS.grey_600};
+    }
+  }
 `;
 
 const Index = () => {
+  const history = useHistory();
+  const [setting, setSetting] = useState({
+    isMine: true,
+    isRealTime: true,
+    isHot: true,
+  })
+  const onClickBtn= () => {
+    history.push("/setting");
+  };
+  useEffect(() => {
+    const defaultSetting = { isMine: true, isRealTime: true, isHot: true};
+    const storage = window.localStorage.getItem("setting");
+    if(!storage){ //유저가 처음 방문했을 때
+      window.localStorage.setItem("setting", JSON.stringify(defaultSetting));
+    } else{
+      const storageJson = JSON.parse(storage);
+      setSetting({
+        isMine: storageJson.isMine,
+        isHot: storageJson.isHot,
+        isRealTime: storageJson.isRealTime,
+      })
+    }
+  }, []);
+
   return (
     <MainWrapper>
       {/* 상단 네비게이션 start*/}
@@ -201,9 +241,13 @@ const Index = () => {
 
 
 
+      {setting.isMine && <Myboard />}
+      {setting.isRealTime && <RealTimeBoard />}
+      {setting.isHot && <Popular />}
 
-
-
+      <button className="setting-button" onClick={onClickBtn}>
+        <span>홈 화면 설정</span>
+      </button>
       {/* 하단 네비게이션 start */}
       <div className="bottom-navigation">
         <BottomNavigation activeNum={1} />
