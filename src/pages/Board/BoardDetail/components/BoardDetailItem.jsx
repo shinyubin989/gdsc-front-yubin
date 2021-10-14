@@ -41,10 +41,60 @@ const BoardDetailItemWrapper = styled.div`
 
   .content-wrapper{
     .title{
-
+      margin-top: 10px;
+      font-size: 17px;
+      font-weight: 500;
     }
     .contents{
-      
+      margin-top: 5px;
+      font-size: 13px;
+      font-weight: 400;
+    }
+    .like-and-comment{
+      margin-top: 10px;
+      display: flex;
+      .like{
+        img{
+          height: 15px;
+          width: 15px;
+        }
+        span{
+          margin-left: 5px;
+          font-size: 15px;
+          font-weight: 400;
+          color: ${COLORS.red};
+        }
+      }
+      .comment{
+        margin-left: 5px;
+        img{
+          height: 15px;
+          width: 15px;
+        }
+        span{
+          margin-left: 5px;
+          font-size: 15px;
+          font-weight: 400;
+          color: rgb(12, 165, 175);
+        }
+      }
+    }
+    .like-button{
+      width: 40px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 5px 7px 7px;
+      background-color: rgb(232, 235, 237);
+      border-radius: 5px;
+      img{
+        width: 10px;
+        margin-right: 2px;
+      }
+      span{
+        font-size: 12px;
+        font-weight: 700;
+        color: rgb(114, 120, 127);
+      }
     }
   }
 
@@ -65,6 +115,31 @@ const BoardDetailItem = ({ key, nickname, date, title, content, like, comment })
           <div className="date">
             <p>{date}</p>
           </div>
+        </div>
+      </div>
+
+
+
+      <div className="content-wrapper">
+        <div className="title">
+          {title}
+        </div>
+        <div className="contents">
+          {content}
+        </div>
+        <div className="like-and-comment">
+          <div className="like">
+            <img src={likeImg} alt="like image"></img>
+            <span>{like}</span>
+          </div>
+          <div className="comment">
+            <img src={commentImg} alt="comment image"></img>
+            <span>{comment}</span>
+          </div>
+        </div>
+        <div className="like-button arrange-center">
+          <img src={likeImg} alt="like button image"></img>
+          <span>공감</span>
         </div>
       </div>
 

@@ -36,28 +36,30 @@ export const dummyPost = [
     content:"gdsc 첫번 째 게시글 입니다. 모두들 만나서 반가워요",
     to: "/board/detail/1",
     like: 0,
-    comment: [
-      {
-        id:1,
-        nickname: "익명",
-        comment: "gdsc very good",
-        date: "10/07 17:13",
-        like: 2,
-      },
-      {
-        id:2,
-        nickname: "익명",
-        content: "그쵸 gdsc재밌어요",
-        date: "10/07 17:13",
-        like: 0,
-      },
-      {
-        id:3,
-        nickname: "익명",
-        content: "나두할걸~",
-        date: "10/07 17:13",
-        like: 0,
-      },
-    ]
+    comment: 3,
+  },
+];
+
+export const comments = [
+  {
+    id:1,
+    nickname: "익명",
+    comment: "gdsc very good",
+    date: "10/07 17:13",
+    like: 2,
+  },
+  {
+    id:2,
+    nickname: "익명",
+    comment: "그쵸 gdsc재밌어요",
+    date: "10/07 17:13",
+    like: 0,
+  },
+  {
+    id:3,
+    nickname: "익명",
+    comment: "나두할걸~",
+    date: "10/07 17:13",
+    like: 0,
   },
 ];

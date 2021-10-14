@@ -5,8 +5,10 @@ import { COLORS } from "../../../components/Colors";
 import arrow from "../../../assets/vector/arrow.svg";
 import search from "../../../assets/nav/search.svg";
 import { dummyPost } from "../dummy";
+import { comments } from "../dummy";
 
 import BoardDetail from "./components/BoardDetail";
+import Comment from "./components/Comment";
 
 const MainWrapper = styled.div`
 .top-navi{
@@ -59,6 +61,10 @@ const Index = () => {
 
       <div className="board-category-board">
             <BoardDetail dummyPosts={dummyPost}/>
+      </div>
+
+      <div className="comment-wrapper">
+            <Comment dummyComments={comments}/>
       </div>
 
 

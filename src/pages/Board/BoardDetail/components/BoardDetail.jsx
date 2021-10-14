@@ -21,7 +21,7 @@ const BoardCategory = ( { dummyPosts } ) => {
             title={item.title}
             content={item.content}
             like={item.like}
-            comment={item.comment.length}
+            comment={item.comment}
           />
        ))}
     </MainWrapper>
