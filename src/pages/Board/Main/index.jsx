@@ -87,7 +87,7 @@ const Index = () => {
         </button>
       </div>
 
-      <Slider {...settings} edgeFriction={0}> //... 이거 알아보귀
+      <Slider {...settings} edgeFriction={0}> 
         <div className="slider-item ">
           <SliderBoard boardPin={boardPin} setBoardPin={setBoardPin} />
         </div>

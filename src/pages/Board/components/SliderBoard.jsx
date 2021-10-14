@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { COLORS } from "../../../components/Colors";
 
 import PinBoardCategory from "./PinBoardCategory";
+import { categoryList } from "../dummy";
 
 const BoardWrapper = styled.div`
   margin: 12px 12px 12px 12px;

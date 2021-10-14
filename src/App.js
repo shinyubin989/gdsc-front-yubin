@@ -13,6 +13,8 @@ import AuthEmail from "./pages/Mypage/AuthEmail";
 import Setting from "./Setting";
 import Posting from "./pages/Posting";
 import BoardCategory from "./pages/Board/BoardCategory";
+import BoardDetail from "./pages/Board/BoardDetail";
+import Searching from "./pages/Search";
 
 const App = () => {
   return (
@@ -30,8 +32,10 @@ const App = () => {
         <Route exact path="/mypage/AuthEmail" component={AuthEmail} />
         <Route exact path="/setting" component={Setting} />
         <Route exact path="/posting" component={Posting} />
+        <Route exact path="/search" component={Searching} />
 
         <Route exact path="/board/list/:category" component={BoardCategory} />
+        <Route exact path="/board/detail/:id" component={BoardDetail} />
       </Switch>
     </BrowserRouter>
   );
