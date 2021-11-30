@@ -14,7 +14,7 @@ const CustomButton = styled.button`
     margin-top: 20px;
 `;
 
-const MainButton = ({ text, onClick}) => {
+const MainButton = ({ text, onClick }) => {
     return (
         <CustomButton onClick={onClick} className="arrange-ceter-center">
             {text}

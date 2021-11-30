@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Modal from "react-modal";
 
 
 import MainButton from "../../../components/Button/MainButton";
 import MainInput from "../../../components/Input/MainInput"
 
 import logo from "../../../assets/logo/logo.png";
+import axios from "axios";
 
 const MainWrapper = styled.div`
   .logo-image {
@@ -58,8 +60,12 @@ const MainWrapper = styled.div`
 
 const Index = () => {
   const [isFocus, setIsFocus] = useState(false);
+
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [errorText, setErrorText] = useState("");
+
   const onChangeId = (e) => {
     setId(e.target.value);
   }
@@ -72,6 +78,27 @@ const Index = () => {
     } else {
       setIsFocus(true);
     }
+  }
+  const onClickLogin = async () => {
+    try {
+      const result = await axios({
+        method: "POST",
+        url: "/api/user/login",
+        data: {
+          user_id: id,
+          password: pw,
+        },
+      });
+      if(result.data.success){
+        window.location.href = "/";
+      } else{
+        setIsOpen(true);
+        setErrorText(result.data.message);
+        alert("아이디 혹은 비밀번호가 틀립니다.");
+      }
+    } catch{
+      alert("server error");
+    }
   };
   return (
     <MainWrapper>
@@ -82,7 +109,7 @@ const Index = () => {
       <p className="everytime-text">에브리타임</p>
       <div className="input-wrapper">
         <MainInput 
-          type="text" 
+          type="id" 
           value={id} 
           onChange={onChangeId} 
           placeholder="아이디" 
@@ -91,21 +118,23 @@ const Index = () => {
       </div>
       <div className="input-wrapper">
         <MainInput 
-          text="비밀번호" 
           handleFocus={handleFocus} 
-          type="text"
+          type="password"
           value={pw}
           onChange={onChangePw}
           placeholder="비밀번호"
         />
       </div>
       <div className="button-wrapper">
-        <MainButton text="에브리타임 로그인" onClick={() => alert("!!")} />
+        <MainButton text="에브리타임 로그인" onClick={onClickLogin} />
       </div>
       {!isFocus && (<div className="signup-button-wrapper">
         <Link to="/signup">회원가입</Link>
       </div>)}
+
     </MainWrapper>
+
+    
   );
 };
 

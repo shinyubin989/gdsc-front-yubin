@@ -10,6 +10,8 @@ import { COLORS } from "../../../components/Colors";
 
 import BoardCategory from "./components/BoardCategory";
 
+import axios from "axios";
+
 const MainWrapper = styled.div`
   .top-navi{
     justify-content: space-between;
@@ -59,8 +61,34 @@ const MainWrapper = styled.div`
   }
 `;
 
-const Index = () => {
+const Index = ({ match }) => {
+
+  const category = match.params.category
+
+  console.log(category);
+
+
+  const [boards, setBoards] = useState([]);
+  const [categoryId, setCategoryId] = useState("");
+  
+  useEffect(() => {
+    const categoryId = match.params.category;
+    const fetchboards = async () => {
+      try {
+        const response = await axios.get("/api/board?category=${categoryId}");
+        setBoards(response.data.data); // 데이터는 response.data.data 안에 들어있습니다.
+      } catch (e) {
+        console.log("fail to receive");
+      }
+    };
+
+    fetchboards();
+  }, []);
+
+  
   return (
+    
+
     <MainWrapper>
 
       <div className="top-navi arrange-center">
@@ -82,12 +110,15 @@ const Index = () => {
 
 
       <div className="board-category-board">
-            <BoardCategory dummyPosts={dummyPost}/>
+            <BoardCategory boards={boards}/>
       </div>
+
+
+
 
       <div className="bottom-navi arrange-center-center">
         <div className="posting-button">
-          <Link to="/posting">
+          <Link to="/board/post/${categoryId}">
               <img src={pencil} alt="글쓰기 버튼" />
               <span>글 쓰기</span>
           </Link>

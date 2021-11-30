@@ -10,17 +10,18 @@ const MainWrapper = styled.div`
 `;
 
 
-const BoardCategory = ( { dummyPosts } ) => {
+const BoardCategory = ( { boards } ) => {
+  
   return (
     <MainWrapper>
-      {dummyPosts && dummyPosts.map((item) => (
-        <Link to={item.to}>
+      {boards && boards.map((item) => (
+        <Link to={"/board/detail/${content.id}"}>
           <BoardCategoryItem
             key={item.id}
             title={item.title}
             content={item.content}
-            like={item.like}
-            comment={item.comment.length}
+            like={item.like_num}
+            comment={item.comment_num}
           />
         </Link>
        ))}

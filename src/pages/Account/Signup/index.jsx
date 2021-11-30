@@ -5,6 +5,8 @@ import MainInput from "../../../components/Input/MainInput";
 import MainButton from "../../../components/Button/MainButton";
 import TopNavigation from "../../../layout/TopNavigation";
 
+import axios from "axios";
+
 const MainWrapper = styled.div`
   display: block;
   margin: 20px;
@@ -102,6 +104,38 @@ const Index = () => {
     setMajor(e.target.value);
   };
 
+
+
+  const signin = async () => {
+    const result = await axios({
+      method: "POST",
+      url: "/api/user",
+      data: {
+        userId: id,
+        password: password,
+        email: email,
+        name: name,
+        nickname: nickname,
+        major: major,
+      },
+    });
+    console.log(`join result: ${result.data}`);
+    if (result.data.success) {
+      window.location.href = "/login";
+    } else {
+      alert(result.data.message);
+    }
+  };
+
+  const onClickSignin = () => {
+    if (errorNum === 0 && name !== "" && email !== "" && nickname !== "" && major !== "") {
+      signin();
+    } else {
+      alert("다시 입력하세요");
+    }
+  };
+
+
   return (
     <MainWrapper>
       <div className="wrapping">
@@ -159,7 +193,7 @@ const Index = () => {
           onChange={onChangeMajor}
           placeholder="전공을 입력해주세요."
         />
-        <MainButton text="회원가입" onClick={() => alert("회원가입")} />
+        <MainButton text="회원가입" onClick={onClickSignin} />
       </div>
       
     </MainWrapper>

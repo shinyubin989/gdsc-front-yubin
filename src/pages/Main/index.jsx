@@ -19,6 +19,8 @@ import RealTimeBoard from "./components/RealTimeBoard";
 import Popular from "./components/Popular";
 import { dummyMyboard, dummyRealtime, dummyHot } from "../../components/dummyData";
 
+import axios from "axios";
+
 
 
 
@@ -172,6 +174,18 @@ const Index = () => {
       })
     }
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios("/api/user/test");
+        console.log(result)
+      } catch(err) {
+        console.log(err)
+      }
+    }
+    fetchData()
+  });
 
   return (
     <MainWrapper>
